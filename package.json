@@ -1,0 +1,24 @@
+{
+  "name": "@247letterstech/cascade-i18n",
+  "version": "0.1.0",
+  "private": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "sonner": "^1.4.41"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "tsup": "^8.0.2",
+    "typescript": "^5.2.2"
+  }
+}
