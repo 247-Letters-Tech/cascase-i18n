@@ -1,16 +1,16 @@
 import React from 'react';
 import { useI18nContext } from '../contexts/I18nContext';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/navigation';
-import { Button } from '@/components/ui/input-controls';
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuLabel,
+//   DropdownMenuSeparator,
+//   DropdownMenuTrigger
+// } from '@/components/ui/navigation';
+// import { Button } from '@/components/ui/input-controls';
 import { Globe, User, Palette } from 'lucide-react';
-import { SupportedLanguage, SupportedPersona, SupportedMode } from '../services/i18nService';
+import { SupportedLanguage, SupportedPersona, SupportedMode } from '@cascade-i18n/core';
 
 // Helper function to get language display name
 const getLanguageDisplay = (code: SupportedLanguage): string => {
@@ -58,57 +58,57 @@ export const LanguageSwitcher: React.FC = () => {
   } = useI18nContext();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2">
+    <div>
+      <div>
+        <button>
           <Globe className="h-4 w-4" />
           <span>{getLanguageDisplay(language)}</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel>Language</DropdownMenuLabel>
+        </button>
+      </div>
+      <div>
+        <div>Language</div>
         {availableLanguages.map((lang) => (
-          <DropdownMenuItem
+          <div
             key={`lang-${lang}`}
             onClick={() => setLanguage(lang)}
             className={language === lang ? "bg-accent" : ""}
           >
             {getLanguageDisplay(lang)}
-          </DropdownMenuItem>
+          </div>
         ))}
 
-        <DropdownMenuSeparator />
+        <hr />
 
-        <DropdownMenuLabel className="flex items-center gap-2">
+        <div>
           <User className="h-4 w-4" />
           Persona
-        </DropdownMenuLabel>
+        </div>
         {availablePersonas.map((p) => (
-          <DropdownMenuItem
+          <div
             key={`persona-${p}`}
             onClick={() => setPersona(p)}
             className={persona === p ? "bg-accent" : ""}
           >
             {getPersonaDisplay(p)}
-          </DropdownMenuItem>
+          </div>
         ))}
 
-        <DropdownMenuSeparator />
+        <hr />
 
-        <DropdownMenuLabel className="flex items-center gap-2">
+        <div>
           <Palette className="h-4 w-4" />
           Tone
-        </DropdownMenuLabel>
+        </div>
         {availableModes.map((m) => (
-          <DropdownMenuItem
+          <div
             key={`mode-${m}`}
             onClick={() => setMode(m)}
             className={mode === m ? "bg-accent" : ""}
           >
             {getModeDisplay(m)}
-          </DropdownMenuItem>
+          </div>
         ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </div>
+    </div>
   );
 }; 

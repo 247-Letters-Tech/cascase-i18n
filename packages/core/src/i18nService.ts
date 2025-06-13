@@ -1,11 +1,33 @@
-import { toast } from "sonner";
+// import { toast } from "sonner";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 // Types for our i18n system
+/**
+ * Defines the supported languages for translation.
+ * - `en`: English
+ * - `ta`: Tamil
+ * - `ta-tg`: Tanglish (Tamil written in English script)
+ */
 export type SupportedLanguage = "en" | "ta" | "ta-tg";
+
+/**
+ * Defines different user personas to tailor content.
+ */
 export type SupportedPersona = "student" | "professional" | "default";
+
+/**
+ * Defines different content modes/tones.
+ */
 export type SupportedMode = "zen" | "roast" | "bro" | "default";
+
+/**
+ * Defines different user subscription types.
+ */
 export type SupportedUserType = "student" | "pro" | "free" | "default";
+
+/**
+ * Defines the available translation modules.
+ */
 export type ModuleName =
   | "roadmap"
   | "common"
@@ -15,6 +37,11 @@ export type ModuleName =
   | "accessibility";
 
 // Cache structure
+/**
+ * @internal
+ * Defines the shape of the in-memory translation cache.
+ * Structure: [language][module][personaAndMode] -> translations
+ */
 interface TranslationCache {
   [language: string]: {
     [module: string]: {
@@ -29,12 +56,24 @@ type Modules = {
 };
 type Tones = { _tones?: { [mode: string]: string[] } };
 
+/**
+ * Represents the structure of the manifest for a single language.
+ */
 export type LanguageManifest = Modules & Tones;
 
+/**
+ * Represents the top-level structure of the i18n manifest file.
+ */
 export interface I18nManifest {
   [language: string]: LanguageManifest;
 }
 
+/**
+ * I18nService is a singleton responsible for managing all internationalization logic.
+ * It fetches a manifest file, dynamically loads translation modules based on the
+ * current context (language, persona, mode, user type), and provides a method
+ * to retrieve translated strings.
+ */
 class I18nService {
   manifest: I18nManifest | null = null;
   cache: TranslationCache = {};
@@ -50,8 +89,12 @@ class I18nService {
   // Singleton pattern
   private static instance: I18nService;
 
-  constructor() {}
+  private constructor() {}
 
+  /**
+   * Gets the singleton instance of the I18nService.
+   * @returns The singleton I18nService instance.
+   */
   public static getInstance(): I18nService {
     if (!I18nService.instance) {
       I18nService.instance = new I18nService();
@@ -60,7 +103,10 @@ class I18nService {
   }
 
   /**
-   * Initialize the i18n service by loading the manifest
+   * Initializes the i18n service by connecting to Supabase and loading the manifest.
+   * This method must be called before any other methods.
+   * @param supabase - The Supabase client instance.
+   * @returns A promise that resolves when the service is initialized.
    */
   public init(supabase: SupabaseClient): Promise<void> {
     if (this.isInitialized) return Promise.resolve();
@@ -79,7 +125,7 @@ class I18nService {
         resolve();
       } catch (error) {
         console.error("Failed to initialize i18n service:", error);
-        toast.error("Failed to load translation system");
+        console.error("Failed to load translation system");
         // Fallback to initialized state anyway to prevent infinite retries
         this.isInitialized = true;
         resolve();
@@ -90,14 +136,17 @@ class I18nService {
   }
 
   /**
-   * Get the loaded manifest data
+   * Retrieves the loaded i18n manifest.
+   * @returns The manifest object, or null if not loaded.
    */
   public getManifest(): I18nManifest | null {
     return this.manifest;
   }
 
   /**
-   * Load the manifest file from Supabase Storage
+   * @internal
+   * Loads the main `manifest.json` from Supabase storage.
+   * This file directs how other translation files are loaded.
    */
   private async loadManifest(): Promise<void> {
     if (!this.supabase) {
@@ -126,7 +175,13 @@ class I18nService {
   }
 
   /**
-   * Set the current language, persona, and mode
+   * Sets the context for translations. This determines which translation
+   * files (patches) are loaded and merged.
+   * @param language - The target language.
+   * @param persona - The user persona.
+   * @param mode - The content mode/tone.
+   * @param userType - The user's subscription type.
+   * @returns A promise that resolves when the context is set.
    */
   public async setLanguageContext(
     language: SupportedLanguage,
@@ -161,7 +216,12 @@ class I18nService {
   }
 
   /**
-   * Get a translation key for a specific module
+   * Retrieves a translated string for a given key and module.
+   * It ensures the required module is loaded, then looks up the key.
+   * @param module - The module the key belongs to.
+   * @param key - The key of the string to translate (e.g., "greetings.hello").
+   * @param defaultValue - A fallback value to return if the key is not found.
+   * @returns A promise that resolves to the translated string or the default value.
    */
   public async t(
     module: ModuleName,
@@ -203,14 +263,27 @@ class I18nService {
   }
 
   /**
-   * Get a unique cache key for the current persona and mode
+   * @internal
+   * Generates a unique cache key based on the current context.
+   * This is used to store different merged versions of a module.
+   * @param module - The module name.
+   * @returns A unique string key for the cache.
    */
   private getCacheKey(module: string): string {
     return `${this.currentUserType}_${this.currentPersona}_${this.currentMode}`;
   }
 
   /**
-   * Load a specific module's translations
+   * @internal
+   * Loads and merges all relevant translation files for a given module
+   * based on the current context (language, userType, persona, mode).
+   * The process is as follows:
+   * 1. Load the base translation file for the module.
+   * 2. Load the patch for the current `userType` and merge it.
+   * 3. Load the patch for the current `persona` and merge it.
+   * 4. Load the patch for the current `mode` and merge it.
+   * The result is then stored in the cache.
+   * @param module - The module to load.
    */
   private async loadModule(module: ModuleName): Promise<void> {
     if (!this.manifest) {
@@ -294,14 +367,20 @@ class I18nService {
 
       // Mark module as loaded for the current context
       this.loadedModules.add(module);
+
+      console.log(`Finished loading module ${module}`);
     } catch (error) {
       console.error(`Failed to load module ${module}:`, error);
-      // Don't throw here, t() will handle the missing translation
+      // Don't throw, just log the error and continue
     }
   }
 
   /**
-   * Fetch a single translation file from Supabase storage
+   * @internal
+   * Fetches a single JSON translation file from Supabase storage.
+   * @param language - The language folder (e.g., "en", "ta").
+   * @param filePath - The name of the file to fetch (e.g., "common" or "common_pro").
+   * @returns A promise that resolves to the parsed JSON object.
    */
   private async fetchTranslationFile(
     language: string,
@@ -334,7 +413,12 @@ class I18nService {
   }
 
   /**
-   * Deeply merge two objects
+   * @internal
+   * Deeply merges two objects. This is used to combine the base
+   * translation file with various patches.
+   * @param target - The base object.
+   * @param source - The object with patches to apply.
+   * @returns A new object with the source merged into the target.
    */
   private deepMerge(
     target: Record<string, any>,
@@ -360,6 +444,12 @@ class I18nService {
   }
 }
 
+/**
+ * @internal
+ * Utility function to check if an item is a non-null object.
+ * @param item - The item to check.
+ * @returns True if the item is an object, false otherwise.
+ */
 function isObject(item: any): boolean {
   return item && typeof item === "object" && !Array.isArray(item);
 }

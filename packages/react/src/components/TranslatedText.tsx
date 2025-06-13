@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useI18nContext } from '../contexts/I18nContext';
-import { i18n, ModuleName } from '../services/i18nService';
+import { i18n, ModuleName } from '@cascade-i18n/core';
 
 interface TranslatedTextProps extends React.HTMLAttributes<HTMLSpanElement> {
   module: ModuleName;

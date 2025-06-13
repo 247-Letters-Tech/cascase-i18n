@@ -1,6 +1,9 @@
-# Dyna-I18n Project TODO List
+# Cascade-I18n Project TODO List
 
-## Core Package (@dyna-i18n/core)
+> **Note**: This detailed task list implements the high-level [Epics](./epics.md). Current project status is tracked in [Status](./status.md).
+
+## Core Package (@cascade-i18n/core)
+*Implements Epic 1: Core I18n Engine*
 
 ### Types and Schemas
 - [x] Define core types and schemas using Zod
@@ -40,7 +43,8 @@
 - [ ] Add performance monitoring
 - [ ] Create testing utilities
 
-## CLI Package (@dyna-i18n/cli)
+## CLI Package (@cascade-i18n/cli)
+*Implements Epic 3: Developer CLI*
 
 ### Commands
 - [ ] Initialize project
@@ -59,7 +63,8 @@
 - [ ] Error reporting
 - [ ] Configuration management
 
-## API Package (@dyna-i18n/api)
+## API Package (@cascade-i18n/api)  
+*Implements Epic 5: Backend API*
 
 ### Endpoints
 - [ ] Authentication
@@ -78,7 +83,8 @@
 - [ ] Error handling
 - [ ] Monitoring
 
-## Web Package (@dyna-i18n/web)
+## Web Package (@cascade-i18n/web)
+*Implements Epic 4: Translation Management Dashboard*
 
 ### Admin Dashboard
 - [ ] User management
@@ -96,19 +102,20 @@
 - [ ] Import/export
 - [ ] Audit logs
 
-## SDK Package (@dyna-i18n/sdk)
+## React SDK Package (@cascade-i18n/react)
+*Implements Epic 2: React SDK*
 
-### React Integration
-- [ ] React hooks
-- [ ] Context providers
-- [ ] Components
-- [ ] Utilities
+### Core Components
+- [ ] I18nProvider context component
+- [ ] useI18nContext hook
+- [ ] TranslatedText component
+- [ ] LanguageSwitcher component
 
-### Other Frameworks
-- [ ] Vue integration
-- [ ] Angular integration
-- [ ] Svelte integration
-- [ ] Node.js integration
+### Future SDK Packages
+- [ ] Vue SDK (@cascade-i18n/vue)
+- [ ] Flutter SDK (@cascade-i18n/flutter)
+- [ ] Angular SDK (planned)
+- [ ] Node.js utilities (planned)
 
 ### Features
 - [ ] Type safety

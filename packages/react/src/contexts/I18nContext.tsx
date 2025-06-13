@@ -1,18 +1,41 @@
 import React, { createContext, useState, useEffect, useContext, ReactNode } from 'react';
 import { SupabaseClient } from '@supabase/supabase-js';
-import { SupportedLanguage, SupportedPersona, SupportedMode, SupportedUserType, i18n, LanguageManifest } from '../services/i18nService';
+import { SupportedLanguage, SupportedPersona, SupportedMode, SupportedUserType, i18n } from '@cascade-i18n/core';
 
+/**
+ * Defines the shape of the data and functions provided by the I18nContext.
+ */
 interface I18nContextType {
+  /** The currently active language. */
   language: SupportedLanguage;
+  /** The currently active user persona. */
   persona: SupportedPersona;
+  /** The currently active content mode/tone. */
   mode: SupportedMode;
+  /** The currently active user type (e.g., 'free', 'pro'). */
   userType: SupportedUserType;
+  /** A boolean indicating if the i18n service is currently initializing. */
   isLoading: boolean;
+  /**
+   * Sets the active language for the application.
+   * @param language - The new language to set.
+   */
   setLanguage: (language: SupportedLanguage) => Promise<void>;
+  /**
+   * Sets the active user persona for the application.
+   * @param persona - The new persona to set.
+   */
   setPersona: (persona: SupportedPersona) => Promise<void>;
+  /**
+   * Sets the active content mode/tone for the application.
+   * @param mode - The new mode to set.
+   */
   setMode: (mode: SupportedMode) => Promise<void>;
+  /** A list of all languages made available by the manifest. */
   availableLanguages: SupportedLanguage[];
+  /** A list of all personas made available by the manifest. */
   availablePersonas: SupportedPersona[];
+  /** A list of all modes made available by the manifest. */
   availableModes: SupportedMode[];
 }
 
@@ -32,15 +55,30 @@ const defaultContext: I18nContextType = {
 
 const I18nContext = createContext<I18nContextType>(defaultContext);
 
+/**
+ * Props for the `I18nProvider` component.
+ */
 interface I18nProviderProps {
+  /** The child components to be rendered within the provider. */
   children: ReactNode;
+  /** An initialized Supabase client instance. */
   supabase: SupabaseClient;
+  /** The default language to use on initial load. Defaults to 'en'. */
   initialLanguage?: SupportedLanguage;
+  /** The default persona to use on initial load. Defaults to 'default'. */
   initialPersona?: SupportedPersona;
+  /** The default mode to use on initial load. Defaults to 'default'. */
   initialMode?: SupportedMode;
+  /** The user's subscription type. Defaults to 'default'. */
   userType?: SupportedUserType;
 }
 
+/**
+ * Provides the i18n context to its children.
+ * This component initializes the i18n service, manages the current i18n state
+ * (language, persona, mode), and makes them available to the entire application.
+ * It should be placed at the root of your component tree.
+ */
 export const I18nProvider: React.FC<I18nProviderProps> = ({
   children,
   supabase,
@@ -82,7 +120,7 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({
           const firstLang = derivedLanguages[0];
           const personasSet = new Set<SupportedPersona>();
           if (firstLang && manifest[firstLang]) {
-            const langManifest: LanguageManifest = manifest[firstLang];
+            const langManifest: Record<string, any> = manifest[firstLang];
             Object.keys(langManifest).forEach(key => {
               if (key !== '_tones') {
                 const modulePersonas = langManifest[key];
@@ -210,6 +248,17 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({
   );
 };
 
+/**
+ * A custom hook to access the i18n context.
+ * This provides an easy way to get the current i18n state and state-updating functions.
+ *
+ * @example
+ * ```tsx
+ * const { language, setLanguage, isLoading } = useI18nContext();
+ * ```
+ *
+ * @returns The current i18n context value.
+ */
 export const useI18nContext = () => useContext(I18nContext);
 
 export default I18nContext; 
