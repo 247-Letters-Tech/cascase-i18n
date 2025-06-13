@@ -13,16 +13,16 @@ colors:
 
 labels:
 # PRIORITY
-- name: P0-Critical
+- name: p0-critical
   color: *red
   description: "🚨 Blocker — foundational components required for MVP"
-- name: P1-High
+- name: p1-high
   color: *orange
   description: "🔥 Critical — core features for initial release"
-- name: P2-Medium
+- name: p2-medium
   color: *yellow
   description: "⚡ Enhancement features planned for current sprint"
-- name: P3-Low
+- name: p3-low
   color: *yellow
   description: "💡 Future/nice-to-have — pick up when capacity allows"
 
@@ -64,19 +64,19 @@ labels:
   description: "🔒 Security improvements and fixes"
 
 # EPICS
-- name: Epic-1-Core
+- name: epic-1-core
   color: *purple
   description: "🏗️ Core I18n Engine — framework-agnostic foundation"
-- name: Epic-2-React
+- name: epic-2-react
   color: *purple
   description: "⚛️ React SDK — seamless React integration"
-- name: Epic-3-CLI
+- name: epic-3-cli
   color: *purple
   description: "🖥️ Developer CLI — command-line tools"
-- name: Epic-4-Web
+- name: epic-4-web
   color: *purple
   description: "🌐 Web Dashboard — translation management UI"
-- name: Epic-5-API
+- name: epic-5-api
   color: *purple
   description: "🔗 Backend API — server-side services"
 
@@ -132,19 +132,19 @@ labels:
   description: "🔄 Cascading merge and personalization"
 
 # SIZE ESTIMATES
-- name: XS
+- name: size-xs
   color: *pink
   description: "🔹 Extra Small — 1-2 hours"
-- name: S
+- name: size-s
   color: *pink
   description: "🔸 Small — half day"
-- name: M
+- name: size-m
   color: *pink
   description: "🔶 Medium — 1-2 days"
-- name: L
+- name: size-l
   color: *pink
   description: "🔷 Large — 3-5 days"
-- name: XL
+- name: size-xl
   color: *pink
   description: "🔺 Extra Large — 1+ weeks"
 
