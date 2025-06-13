@@ -12,45 +12,45 @@
 5. **✅ Done** - Completed and verified tasks
 
 ### **Labels**
-- **Priority**: `P0-Critical`, `P1-High`, `P2-Medium`, `P3-Low`
-- **Epics**: `Epic-1-Core`, `Epic-2-React`, `Epic-3-CLI`, `Epic-4-Web`, `Epic-5-API`
+- **Priority**: `p0-critical`, `p1-high`, `p2-medium`, `p3-low`
+- **Epics**: `epic-1-core`, `epic-2-react`, `epic-3-cli`, `epic-4-web`, `epic-5-api`
 - **Types**: `epic`, `feature`, `bug`, `documentation`, `infrastructure`
-- **Size**: `XS`, `S`, `M`, `L`, `XL`
+- **Size**: `size-xs`, `size-s`, `size-m`, `size-l`, `size-xl`
 
 ## 🎯 Development Phases
 
-### **Phase 1: Foundation** (Weeks 1-6) - P0 Priority
+### **Phase 1: Foundation** (Weeks 1-6) - p0-critical Priority
 **Goal**: Establish core architecture and foundational components
 
 **Issues to Create:**
-1. **[EPIC] Core I18n Engine** `P0` `Epic-1-Core` `epic`
-2. **Infrastructure Setup** `P0` `infrastructure`
-3. **Testing Framework Setup** `P0` `infrastructure`
+1. **[EPIC] Core I18n Engine** `p0-critical` `epic-1-core` `epic`
+2. **Infrastructure Setup** `p0-critical` `infrastructure`
+3. **Testing Framework Setup** `p0-critical` `infrastructure`
 
-### **Phase 2: SDK Development** (Weeks 4-10) - P0/P1 Priority
+### **Phase 2: SDK Development** (Weeks 4-10) - p0-critical/p1-high Priority
 **Goal**: Build user-facing SDK and basic API
 
 **Issues to Create:**
-1. **[EPIC] React SDK** `P0` `Epic-2-React` `epic`
-2. **[EPIC] Backend API (Basic)** `P1` `Epic-5-API` `epic`
+1. **[EPIC] React SDK** `p0-critical` `epic-2-react` `epic`
+2. **[EPIC] Backend API (Basic)** `p1-high` `epic-5-api` `epic`
 
-### **Phase 3: Developer Tools** (Weeks 8-14) - P1 Priority
+### **Phase 3: Developer Tools** (Weeks 8-14) - p1-high Priority
 **Goal**: Complete developer experience
 
 **Issues to Create:**
-1. **[EPIC] Developer CLI** `P1` `Epic-3-CLI` `epic`
-2. **Integration Testing Suite** `P1` `feature`
+1. **[EPIC] Developer CLI** `p1-high` `epic-3-cli` `epic`
+2. **Integration Testing Suite** `p1-high` `feature`
 
-### **Phase 4: Collaboration Platform** (Weeks 12-20) - P2 Priority
+### **Phase 4: Collaboration Platform** (Weeks 12-20) - p2-medium Priority
 **Goal**: Build collaborative translation management
 
 **Issues to Create:**
-1. **[EPIC] Web Dashboard** `P2` `Epic-4-Web` `epic`
-2. **Advanced API Features** `P2` `Epic-5-API` `feature`
+1. **[EPIC] Web Dashboard** `p2-medium` `epic-4-web` `epic`
+2. **Advanced API Features** `p2-medium` `epic-5-api` `feature`
 
 ## 📝 GitHub Issues Structure
 
-### **Epic 1: Core I18n Engine** `P0-Critical`
+### **Epic 1: Core I18n Engine** `p0-critical`
 ```
 Epic Goal: Build robust, framework-agnostic i18n service with contextual translations
 Dependencies: None (foundational)
@@ -58,14 +58,14 @@ Duration: 4-6 weeks
 ```
 
 **Sub-Issues:**
-- [ ] **Implement manifest.json structure** `P0` `L`
-- [ ] **Build cascading merge logic** `P0` `L` 
-- [ ] **Add performance optimization** `P0` `M`
-- [ ] **Implement TranslationService** `P1` `L`
-- [ ] **Implement CacheService** `P1` `M`
-- [ ] **Implement StorageService** `P1` `M`
+- [ ] **Implement manifest.json structure** `p0-critical` `size-l`
+- [ ] **Build cascading merge logic** `p0-critical` `size-l` 
+- [ ] **Add performance optimization** `p0-critical` `size-m`
+- [ ] **Implement TranslationService** `p1-high` `size-l`
+- [ ] **Implement CacheService** `p1-high` `size-m`
+- [ ] **Implement StorageService** `p1-high` `size-m`
 
-### **Epic 2: React SDK** `P0-Critical`
+### **Epic 2: React SDK** `p0-critical`
 ```
 Epic Goal: Seamless React integration experience
 Dependencies: Epic 1 (70% complete)
@@ -182,7 +182,7 @@ Duration: 5-6 weeks
 - [ ] #[issue-number] [Sub-issue 2]
 
 **⏱️ Estimated Duration**: [X weeks]
-**🏷️ Labels**: `epic` `P[0-3]` `Epic-[X]-[Name]`
+**🏷️ Labels**: `epic` `p[0-3]-[level]` `epic-[x]-[name]`
 ```
 
 ### **Feature Issue Template**
@@ -206,7 +206,7 @@ Duration: 5-6 weeks
 **📁 Files to Modify**:
 - `/packages/[package]/src/[file]`
 
-**🏷️ Labels**: `feature` `P[0-3]` `Epic-[X]-[Name]` `[XS/S/M/L/XL]`
+**🏷️ Labels**: `feature` `p[0-3]-[level]` `epic-[x]-[name]` `size-[xs/s/m/l/xl]`
 ```
 
 ## 🚀 Implementation Steps
