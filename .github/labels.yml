@@ -1,0 +1,197 @@
+colors:
+  red:     &red     D32F2F   # priorities
+  orange:  &orange  F57C00   # priorities
+  yellow:  &yellow  FBC02D   # priorities
+  blue:    &blue    1976D2   # statuses
+  teal:    &teal    388E3C   # types
+  purple:  &purple  7B1FA2   # epics/scopes
+  gray:    &gray    616161   # meta
+  amber:   &amber   FFA000   # testing
+  indigo:  &indigo  303F9F   # infrastructure
+  green:   &green   4CAF50   # packages
+  pink:    &pink    E91E63   # size estimates
+
+labels:
+# PRIORITY
+- name: P0-Critical
+  color: *red
+  description: "🚨 Blocker — foundational components required for MVP"
+- name: P1-High
+  color: *orange
+  description: "🔥 Critical — core features for initial release"
+- name: P2-Medium
+  color: *yellow
+  description: "⚡ Enhancement features planned for current sprint"
+- name: P3-Low
+  color: *yellow
+  description: "💡 Future/nice-to-have — pick up when capacity allows"
+
+# STATUS
+- name: status-blocked
+  color: *blue
+  description: "🚫 Blocked by dependencies or external factors"
+- name: status-in-progress
+  color: *blue
+  description: "🚧 Work currently in progress"
+- name: status-ready
+  color: *blue
+  description: "✅ Ready for implementation — dependencies met"
+- name: status-review
+  color: *blue
+  description: "👀 Needs code review or testing"
+
+# TYPE
+- name: epic
+  color: *teal
+  description: "🎭 Major feature collection spanning multiple issues"
+- name: feature
+  color: *teal
+  description: "✨ New feature implementation"
+- name: bug
+  color: *teal
+  description: "🐛 Bug fixes and issues"
+- name: documentation
+  color: *teal
+  description: "📚 Documentation updates and improvements"
+- name: refactor
+  color: *teal
+  description: "🔧 Code refactoring and improvements"
+- name: performance
+  color: *teal
+  description: "⚡ Performance optimizations"
+- name: security
+  color: *teal
+  description: "🔒 Security improvements and fixes"
+
+# EPICS
+- name: Epic-1-Core
+  color: *purple
+  description: "🏗️ Core I18n Engine — framework-agnostic foundation"
+- name: Epic-2-React
+  color: *purple
+  description: "⚛️ React SDK — seamless React integration"
+- name: Epic-3-CLI
+  color: *purple
+  description: "🖥️ Developer CLI — command-line tools"
+- name: Epic-4-Web
+  color: *purple
+  description: "🌐 Web Dashboard — translation management UI"
+- name: Epic-5-API
+  color: *purple
+  description: "🔗 Backend API — server-side services"
+
+# PACKAGES/COMPONENTS
+- name: pkg-core
+  color: *green
+  description: "📦 @cascade-i18n/core package changes"
+- name: pkg-react
+  color: *green
+  description: "📦 @cascade-i18n/react package changes"
+- name: pkg-cli
+  color: *green
+  description: "📦 @cascade-i18n/cli package changes"
+- name: pkg-api
+  color: *green
+  description: "📦 API application changes"
+- name: pkg-web
+  color: *green
+  description: "📦 Web application changes"
+
+# INFRASTRUCTURE/SCOPE
+- name: infrastructure
+  color: *indigo
+  description: "🏗️ Infrastructure setup and DevOps"
+- name: database
+  color: *indigo
+  description: "🗄️ Database schema and migrations"
+- name: cache
+  color: *indigo
+  description: "⚡ Redis cache and performance"
+- name: ci-cd
+  color: *indigo
+  description: "🔄 Continuous Integration and Deployment"
+- name: monitoring
+  color: *indigo
+  description: "📊 Monitoring, logging, and observability"
+
+# I18N SPECIFIC
+- name: translation-engine
+  color: *purple
+  description: "🌍 Core translation and merge logic"
+- name: dialect-support
+  color: *purple
+  description: "🗣️ Dialect switching and regional variants"
+- name: ai-integration
+  color: *purple
+  description: "🤖 AI-powered translation features"
+- name: manifest
+  color: *purple
+  description: "📋 Manifest structure and file organization"
+- name: cascading-logic
+  color: *purple
+  description: "🔄 Cascading merge and personalization"
+
+# SIZE ESTIMATES
+- name: XS
+  color: *pink
+  description: "🔹 Extra Small — 1-2 hours"
+- name: S
+  color: *pink
+  description: "🔸 Small — half day"
+- name: M
+  color: *pink
+  description: "🔶 Medium — 1-2 days"
+- name: L
+  color: *pink
+  description: "🔷 Large — 3-5 days"
+- name: XL
+  color: *pink
+  description: "🔺 Extra Large — 1+ weeks"
+
+# META
+- name: help-wanted
+  color: *gray
+  description: "🙋 Extra attention or expertise needed"
+- name: good-first-issue
+  color: *gray
+  description: "👶 Good for newcomers to the project"
+- name: duplicate
+  color: *gray
+  description: "🔄 This issue or pull request already exists"
+- name: wontfix
+  color: *gray
+  description: "❌ This will not be worked on"
+- name: question
+  color: *gray
+  description: "❓ Further information is requested"
+
+# TESTING
+- name: unit-test
+  color: *amber
+  description: "🧪 Unit test implementation and improvements"
+- name: integration-test
+  color: *amber
+  description: "🔗 Integration test implementation"
+- name: e2e-test
+  color: *amber
+  description: "🎭 End-to-end test implementation"
+- name: test-coverage
+  color: *amber
+  description: "📊 Code coverage improvements"
+- name: test-infrastructure
+  color: *amber
+  description: "🏗️ Test tooling and CI integration"
+
+# WORKFLOW
+- name: breaking-change
+  color: *red
+  description: "💥 Breaking API or behavior change"
+- name: needs-design
+  color: *purple
+  description: "🎨 Needs design or UX review"
+- name: needs-discussion
+  color: *gray
+  description: "💬 Needs team discussion before implementation"
+- name: migration
+  color: *indigo
+  description: "📦 Migration task or breaking change"
