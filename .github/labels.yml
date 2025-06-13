@@ -9,7 +9,7 @@ colors:
   amber:   &amber   FFA000   # testing
   indigo:  &indigo  303F9F   # infrastructure
   green:   &green   4CAF50   # packages
-  pink:    &pink    E91E63   # size estimates
+  pink:    &pink    E91E63   # effort estimates
 
 labels:
 # PRIORITY
@@ -131,22 +131,25 @@ labels:
   color: *purple
   description: "🔄 Cascading merge and personalization"
 
-# SIZE ESTIMATES
-- name: size-xs
+# EFFORT ESTIMATES
+- name: effort-quick
   color: *pink
-  description: "🔹 Extra Small — 1-2 hours"
-- name: size-s
+  description: "⚡ Quick — 1-2 hours"
+- name: effort-half-day
   color: *pink
-  description: "🔸 Small — half day"
-- name: size-m
+  description: "🕐 Half Day — 3-4 hours"
+- name: effort-1-day
   color: *pink
-  description: "🔶 Medium — 1-2 days"
-- name: size-l
+  description: "📅 One Day — 6-8 hours"
+- name: effort-few-days
   color: *pink
-  description: "🔷 Large — 3-5 days"
-- name: size-xl
+  description: "📆 Few Days — 2-4 days"
+- name: effort-week
   color: *pink
-  description: "🔺 Extra Large — 1+ weeks"
+  description: "🗓️ One Week — 5-7 days"
+- name: effort-epic
+  color: *pink
+  description: "🏗️ Epic — Multiple weeks"
 
 # META
 - name: help-wanted

@@ -15,7 +15,7 @@
 - **Priority**: `p0-critical`, `p1-high`, `p2-medium`, `p3-low`
 - **Epics**: `epic-1-core`, `epic-2-react`, `epic-3-cli`, `epic-4-web`, `epic-5-api`
 - **Types**: `epic`, `feature`, `bug`, `documentation`, `infrastructure`
-- **Size**: `size-xs`, `size-s`, `size-m`, `size-l`, `size-xl`
+- **Effort**: `effort-quick` (1-2h), `effort-half-day` (3-4h), `effort-1-day` (6-8h), `effort-few-days` (2-4d), `effort-week` (5-7d), `effort-epic` (weeks)
 
 ## 🎯 Development Phases
 
@@ -58,12 +58,12 @@ Duration: 4-6 weeks
 ```
 
 **Sub-Issues:**
-- [ ] **Implement manifest.json structure** `p0-critical` `size-l`
-- [ ] **Build cascading merge logic** `p0-critical` `size-l` 
-- [ ] **Add performance optimization** `p0-critical` `size-m`
-- [ ] **Implement TranslationService** `p1-high` `size-l`
-- [ ] **Implement CacheService** `p1-high` `size-m`
-- [ ] **Implement StorageService** `p1-high` `size-m`
+- [ ] **Implement manifest.json structure** `p0-critical` `effort-few-days`
+- [ ] **Build cascading merge logic** `p0-critical` `effort-few-days` 
+- [ ] **Add performance optimization** `p0-critical` `effort-1-day`
+- [ ] **Implement TranslationService** `p1-high` `effort-few-days`
+- [ ] **Implement CacheService** `p1-high` `effort-1-day`
+- [ ] **Implement StorageService** `p1-high` `effort-1-day`
 
 ### **Epic 2: React SDK** `p0-critical`
 ```
@@ -206,7 +206,7 @@ Duration: 5-6 weeks
 **📁 Files to Modify**:
 - `/packages/[package]/src/[file]`
 
-**🏷️ Labels**: `feature` `p[0-3]-[level]` `epic-[x]-[name]` `size-[xs/s/m/l/xl]`
+**🏷️ Labels**: `feature` `p[0-3]-[level]` `epic-[x]-[name]` `effort-[estimate]`
 ```
 
 ## 🚀 Implementation Steps
